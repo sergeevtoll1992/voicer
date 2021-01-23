@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href='style.css'>
+</head>
+<body>
+    <div class="wrap">
+        <textarea name="" id="text" cols="30" rows="10" placeholder="Я читаю текст на русском и английском, с разными акцентами, скоростью и высотой. Вставтьие или введите текст"></textarea>
+        <div class="voice">
+            <select name="voice" id="voiceName">
+                <option value="0">Microsoft Irina Desktop - Russian</option>
+                <option value="4">Google UK English Female</option>
+                <option value="5">Google US English Male</option>
+                <option value="17">Google русский</option>
+            </select>
+        </div>
+        <div class="speed">
+            <label for="speed">Скорость <p id="speedIndicator">1</p></label>
+            <input type="range" min="0" max="1.8" name="speed" step="0.1" id="speed" value="1">
+        </div>
+        <div class="pitch">
+            <label for="pitch">Высота голоса <p id="pitchIndicator">1</p></label>
+            <input type="range" min="0" max="1.8" name="pitch" step="0.1" id="pitch" value="1">
+        </div>
+        <button id='start'>Читать</button>
+    </div>
+    <script src="script.js"></script>
+
+</body>
+</html>
