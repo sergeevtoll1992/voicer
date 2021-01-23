@@ -3,27 +3,36 @@ const text = document.querySelector('#text')
 const pitch  = document.querySelector('#pitch')
 const speed  = document.querySelector('#speed')
 const voiceName = document.querySelector('#voiceName')
-
 let synth = window.speechSynthesis;
 
-
-
+// регулятор скорости
 speed.oninput = function() {
     document.querySelector('#speedIndicator').innerHTML = this.value
 }
 
+// регулятор высоты голоса
 pitch.oninput = function() {
     document.querySelector('#pitchIndicator').innerHTML = this.value
 }
 
-voiceName.addEventListener('change',()=>{
-    console.log(voiceName.value)
+// создать список акцентов
+voiceName.addEventListener('click',e=>{
+    let options = document.querySelectorAll('option')
+    if(options.length>2){
+        return
+    }
+    voiceName.innerHTML = 0
+    let voiceChoice = synth.getVoices().forEach((item, index)=>{
+
+        voiceName.innerHTML += `<option value="${index}">${item.name}</option>`
+    })
+    
 })
 
+// задать параметры голосу и начать читать
 start.addEventListener('click', e=>{
     textRead = text.value
-    let voices = window.speechSynthesis.getVoices()
-
+    let voices = synth.getVoices()
     let utterThis = new SpeechSynthesisUtterance(textRead);
     
     utterThis.rate =speed.value
@@ -32,8 +41,7 @@ start.addEventListener('click', e=>{
     
     utterThis.voice = voices[`${voiceName.value}`]
 
-
+    console.log(voiceName)
     synth.speak(utterThis) 
-
 })
 
